@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     public Vector2 input;
 
+    [SerializeField]
+    private Animator animator;
+
     private void Update()
     {
         if (!isMoving)
@@ -21,12 +24,17 @@ public class PlayerController : MonoBehaviour
 
             if (input != Vector2.zero)
             {
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
+
                 var targetPos = transform.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
                 StartCoroutine(Move(targetPos));
             }
         }
+
+        animator.SetBool("isMoving", isMoving);
     }
 
     // IEnumerator is used to move something over a period of time
