@@ -5,22 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
 public class MoveBase : ScriptableObject
 {
-    [SerializeField]
-    new string name;
+    [SerializeField] new string name;
 
     [TextArea]
-    [SerializeField]
-    string description;
+    [SerializeField] string description;
 
-    [SerializeField]
-    PokemonType type;
+    [SerializeField] PokemonType type;
 
-    [SerializeField]
-    int power;
-    [SerializeField]
-    int accuracy;
-    [SerializeField]
-    int pp;
+    [SerializeField] int power;
+    [SerializeField] int accuracy;
+    [SerializeField] int pp;
 
     public string Name { get { return name; } }
     public string Description { get { return description; } }
