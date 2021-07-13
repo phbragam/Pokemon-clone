@@ -5079,7 +5079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 20.6, y: 0}
+  m_AnchoredPosition: {x: 20.599998, y: 0}
   m_SizeDelta: {x: 27.013214, y: 23.554981}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &738286046
@@ -5247,6 +5247,7 @@ GameObject:
   - component: {fileID: 901846724}
   - component: {fileID: 901846726}
   - component: {fileID: 901846725}
+  - component: {fileID: 901846727}
   m_Layer: 0
   m_Name: PlayerHud
   m_TagString: Untagged
@@ -5313,6 +5314,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901846723}
   m_CullTransparentMesh: 0
+--- !u!114 &901846727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901846723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c76da2101516894ba98c83956898d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 1266596770}
+  levelText: {fileID: 985551694}
+  hpBar: {fileID: 1468341031}
 --- !u!1 &934987051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5456,7 +5472,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lvl:'
+  m_Text: Lv.5
 --- !u!222 &985551695
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5476,6 +5492,7 @@ GameObject:
   - component: {fileID: 988664115}
   - component: {fileID: 988664117}
   - component: {fileID: 988664116}
+  - component: {fileID: 988664118}
   m_Layer: 0
   m_Name: PlayerUnit
   m_TagString: Untagged
@@ -5539,6 +5556,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988664114}
   m_CullTransparentMesh: 0
+--- !u!114 &988664118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988664114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18314f6b52d6c4747a31917b81e59786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _base: {fileID: 11400000, guid: a06d8f273277e924b874e9cb08838ce9, type: 2}
+  level: 7
+  isPlayerUnit: 1
 --- !u!1 &1073931382
 GameObject:
   m_ObjectHideFlags: 0
@@ -6903,6 +6935,7 @@ GameObject:
   - component: {fileID: 1468341028}
   - component: {fileID: 1468341030}
   - component: {fileID: 1468341029}
+  - component: {fileID: 1468341031}
   m_Layer: 0
   m_Name: HPBar
   m_TagString: Untagged
@@ -6969,6 +7002,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468341027}
   m_CullTransparentMesh: 0
+--- !u!114 &1468341031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468341027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c09a9950e6cef34e980d3861f89cddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 934987051}
 --- !u!1 &1805455453
 GameObject:
   m_ObjectHideFlags: 0
