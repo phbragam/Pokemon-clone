@@ -64,7 +64,7 @@ public class Pokemon
     {
         float critical = 1f;
 
-        if (Random.value * 100f <= 70.25)
+        if (Random.value * 100f <= 6.25)
         {
             critical = 2f;
         }
