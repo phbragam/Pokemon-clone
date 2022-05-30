@@ -1401,15 +1401,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
-  - _base: {fileID: 11400000, guid: a06d8f273277e924b874e9cb08838ce9, type: 2}
-    level: 7
+  - _base: {fileID: 11400000, guid: 9ba363a5a9e15b44d99e3277d3b41740, type: 2}
+    level: 10
   - _base: {fileID: 11400000, guid: b56b42f8b121d7e4b95f0f30ce51157b, type: 2}
     level: 3
   - _base: {fileID: 11400000, guid: b56b42f8b121d7e4b95f0f30ce51157b, type: 2}
     level: 2
   - _base: {fileID: 11400000, guid: a06d8f273277e924b874e9cb08838ce9, type: 2}
     level: 1
-  - _base: {fileID: 11400000, guid: b56b42f8b121d7e4b95f0f30ce51157b, type: 2}
+  - _base: {fileID: 11400000, guid: a06d8f273277e924b874e9cb08838ce9, type: 2}
     level: 6
 --- !u!1 &439743596
 GameObject:
