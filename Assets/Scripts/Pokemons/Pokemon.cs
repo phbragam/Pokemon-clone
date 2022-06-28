@@ -19,9 +19,13 @@ public class Pokemon
     public Dictionary<Stat, int> StatBoosts { get; private set; }
     public Condition Status { get; private set; }
     public int StatusTime { get; set; }
+    public Condition VolatileStatus { get; private set; }
+    public int VolatileStatusTime { get; set; }
 
     public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
     public bool HpChanged { get; set; }
+    public event System.Action OnStatusChanged;
+
     public void Init()
     {
         // Generate Moves
@@ -40,6 +44,8 @@ public class Pokemon
         HP = MaxHp;
 
         ResetStatBoost();
+        Status = null;
+        VolatileStatus = null;
     }
 
     void CalculateStats()
@@ -51,7 +57,7 @@ public class Pokemon
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5);
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
 
-        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10;
+        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
     }
 
     void ResetStatBoost()
@@ -179,15 +185,40 @@ public class Pokemon
 
     public void SetStatus(ConditionID conditionID)
     {
+        if (Status != null)
+        {
+            return;
+        }
+
         Status = ConditionsDb.Conditions[conditionID];
         // using the null condition check to guarantee that the code won't crash even if OnStart is empty or doesn't exists
         Status?.OnStart?.Invoke(this);
         StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
+        OnStatusChanged?.Invoke();
     }
 
     public void CureStatus()
     {
         Status = null;
+        OnStatusChanged?.Invoke();
+    }
+
+    public void SetVolatileStatus(ConditionID conditionID)
+    {
+        if (VolatileStatus != null)
+        {
+            return;
+        }
+
+        VolatileStatus = ConditionsDb.Conditions[conditionID];
+        // using the null condition check to guarantee that the code won't crash even if OnStart is empty or doesn't exists
+        VolatileStatus?.OnStart?.Invoke(this);
+        StatusChanges.Enqueue($"{Base.Name} {VolatileStatus.StartMessage}");
+    }
+
+    public void CureVolatileStatus()
+    {
+        VolatileStatus = null;
     }
 
     public Move GetRandomMove()
@@ -198,22 +229,36 @@ public class Pokemon
 
     public bool OnBeforeMove()
     {
+        bool canPerformMove = true;
         // don't use the question mark notation because we don't want to return null in casa of OnBeforeMove being empty
         if (Status?.OnBeforeMove != null)
         {
-            return Status.OnBeforeMove(this);
+            if (!Status.OnBeforeMove(this))
+            {
+                canPerformMove = false;
+            }
         }
 
-        return true;
+        if (VolatileStatus?.OnBeforeMove != null)
+        {
+            if (!VolatileStatus.OnBeforeMove(this))
+            {
+                canPerformMove = false;
+            }
+        }
+
+        return canPerformMove;
     }
 
     public void OnAfterTurn()
     {
         Status?.OnAfterTurn?.Invoke(this);
+        VolatileStatus?.OnAfterTurn?.Invoke(this);
     }
 
     public void OnBattleOver()
     {
+        VolatileStatus = null;
         ResetStatBoost();
     }
 }
