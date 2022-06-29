@@ -40,7 +40,6 @@ public class Pokemon
         }
 
         CalculateStats();
-
         HP = MaxHp;
 
         ResetStatBoost();

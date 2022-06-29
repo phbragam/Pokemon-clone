@@ -124,6 +124,7 @@ public class BattleSystem : MonoBehaviour
         if (!canRunMove)
         {
             yield return ShowStatusChanegs(sourceUnit.Pokemon);
+            yield return sourceUnit.Hud.UpdateHP();
             yield break;
         }
         yield return ShowStatusChanegs(sourceUnit.Pokemon);

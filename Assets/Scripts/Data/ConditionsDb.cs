@@ -122,6 +122,10 @@ public class ConditionsDb
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} kicked out of confusion!");
                         return true;
                     }
+                    else
+                    {
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confused");
+                    }
 
                     pokemon.VolatileStatusTime --;
 
@@ -132,7 +136,6 @@ public class ConditionsDb
                     }
 
                     // Hurt by confusion
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confused");
                     pokemon.UpdateHP(pokemon.MaxHp / 8);
                     pokemon.StatusChanges.Enqueue("It hurt itself due to confusion");
                     return false;
